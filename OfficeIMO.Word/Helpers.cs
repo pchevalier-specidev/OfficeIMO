@@ -75,8 +75,16 @@ namespace OfficeIMO.Word {
         }
 
         internal static ImageСharacteristics GetImageСharacteristics(Stream imageStream) {
+
+#if IMAGESHARP_3
+            using var img = SixLabors.ImageSharp.Image.Load(imageStream);
+            imageStream.Position = 0;
+            var imageFormat = img.Metadata.DecodedImageFormat;
+#else
             using var img = SixLabors.ImageSharp.Image.Load(imageStream, out var imageFormat);
             imageStream.Position = 0;
+#endif
+
             var type = ConvertToImagePartType(imageFormat);
             return new ImageСharacteristics(img.Width, img.Height, type);
         }

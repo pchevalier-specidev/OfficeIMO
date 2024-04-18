@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+    <Configurations>Debug;Release;Debug_image_sharp_3;Release_image_sharp_3</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
